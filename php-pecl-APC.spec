@@ -2,7 +2,7 @@
 %define		_status		stable
 
 Summary:	%{_modname} - Alternative PHP Cache
-#Summary(pl):	%{_modname} -
+Summary(pl):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
 Version:	2.0.2
 Release:	1
@@ -21,15 +21,18 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		extensionsdir	%{_libdir}/php
 
 %description
-APC is the Alternative PHP Cache. It was conceived of to provide a free,
-open, and robust framework for caching and optimizing PHP intermediate
-code.
+APC is the Alternative PHP Cache. It was conceived of to provide a
+free, open, and robust framework for caching and optimizing PHP
+intermediate code.
 
 This extension has in PEAR status: %{_status}.
 
-#%description -l pl
-#
-#To rozszerzenie ma w PEAR status: %{_status}.
+%description -l pl
+APC to alternatywne cache PHP. W wyobra¿eniach mia³o dostarczaæ
+wolnodostêpny, otwarty i potê¿ny szkielet do buforowania i
+optymalizowania kodu po¶redniego PHP.
+
+To rozszerzenie ma w PEAR status: %{_status}.
 
 %prep
 %setup -q -c
