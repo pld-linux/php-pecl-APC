@@ -25,14 +25,14 @@ APC is the Alternative PHP Cache. It was conceived of to provide a
 free, open, and robust framework for caching and optimizing PHP
 intermediate code.
 
-This extension has in PEAR status: %{_status}.
+In PECL status of this package is: %{_status}.
 
 %description -l pl
 APC to alternatywne cache PHP. W wyobra¿eniach mia³o dostarczaæ
 wolnodostêpny, otwarty i potê¿ny szkielet do buforowania i
 optymalizowania kodu po¶redniego PHP.
 
-To rozszerzenie ma w PEAR status: %{_status}.
+To rozszerzenie ma w PECL status: %{_status}.
 
 %prep
 %setup -q -c
