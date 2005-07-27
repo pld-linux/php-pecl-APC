@@ -4,12 +4,12 @@
 Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
-Version:	2.0.4
+Version:	3.0.4
 Release:	1
-License:	PHP 2.02
+License:	PHP
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
-# Source0-md5:	4962f05bc752e3cfa1f662bbdfa33605
+# Source0-md5:	f78dc7d319a64914c50ee28bfd53a231
 URL:		http://pecl.php.net/package/APC/
 BuildRequires:	libtool
 BuildRequires:	php-devel
