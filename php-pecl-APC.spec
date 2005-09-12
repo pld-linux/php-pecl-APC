@@ -69,5 +69,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE}
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/conf.d/%{_modname}.ini
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_modname}.ini
 %attr(755,root,root) %{extensionsdir}/%{_modname}.so
