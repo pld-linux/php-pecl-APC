@@ -5,12 +5,12 @@
 Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
-Version:	3.0.8
-Release:	5
+Version:	3.0.10
+Release:	1
 License:	PHP
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
-# Source0-md5:	a70a14a00275e551e8085f742322433f
+# Source0-md5:	8abab9ceb22e2af22a282bc1d8a4766a
 URL:		http://pecl.php.net/package/APC/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.254
@@ -50,6 +50,12 @@ install %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{extensionsdir}/%{
 cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
 ; Enable %{_modname} extension module
 extension=%{_modname}.so
+apc.enabled=1
+;apc.shm_segments=1
+;apc.optimization=0
+;apc.shm_size=30
+;apc.cache_by_default=1
+;apc.max_file_size=1M
 EOF
 
 %clean
