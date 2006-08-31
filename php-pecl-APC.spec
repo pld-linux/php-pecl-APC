@@ -51,11 +51,18 @@ cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
 ; Enable %{_modname} extension module
 extension=%{_modname}.so
 apc.enabled=1
-;apc.shm_segments=1
 ;apc.optimization=0
-;apc.shm_size=30
+;apc.shm_segments=1
+;apc.shm_size=32
 ;apc.cache_by_default=1
 ;apc.max_file_size=1M
+;apc.num_files_hint=1024
+;apc.gc_ttl=3600
+;apc.ttl=0
+;apc.mmap_file_mask=/tmp/apc.XXXXXX
+;apc.filters=
+;apc.stat=1
+;apc.enable_cli=0
 EOF
 
 %clean
