@@ -1,3 +1,5 @@
+# TODO
+# - segfaults CLI
 %define		_modname	APC
 %define		_status		stable
 %define		_sysconfdir	/etc/php
