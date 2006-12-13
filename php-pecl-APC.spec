@@ -77,6 +77,7 @@ install -D %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{extensionsdir}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/{cgi-fcgi,conf,apache2handler}.d
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
+cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/apache.d/%{_modname}.ini
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/apache2handler.d/%{_modname}.ini
 
 %clean
