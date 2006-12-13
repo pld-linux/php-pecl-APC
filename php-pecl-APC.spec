@@ -11,12 +11,12 @@
 Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
-Version:	3.0.11
-Release:	2
+Version:	3.0.12p2
+Release:	1
 License:	PHP
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
-# Source0-md5:	4d4481ba7be4245320083b9b254d6d79
+# Source0-md5:	e7f1762ee95cdaaf90cf16345c6228a3
 URL:		http://pecl.php.net/package/APC/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.322
@@ -74,9 +74,9 @@ rm -rf $RPM_BUILD_ROOT
 install -D %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{extensionsdir}/%{_modname}.so
 
 # we install APC.ini for all handlers but CLI and CGI
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/{cgi-fcgi,apache,apache2handler}.d
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/{cgi-fcgi,conf,apache2handler}.d
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
-cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/apache.d/%{_modname}.ini
+cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/apache2handler.d/%{_modname}.ini
 
 %clean
@@ -96,6 +96,6 @@ fi
 %defattr(644,root,root,755)
 %doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.d/%{_modname}.ini
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_modname}.ini
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache2handler.d/%{_modname}.ini
 %attr(755,root,root) %{extensionsdir}/%{_modname}.so
