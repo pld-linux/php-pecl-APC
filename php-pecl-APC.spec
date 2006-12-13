@@ -74,7 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 install -D %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{extensionsdir}/%{_modname}.so
 
 # we install APC.ini for all handlers but CLI and CGI
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/{cgi-fcgi,conf,apache2handler}.d
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/{cgi-fcgi,conf,apache,apache2handler}.d
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/apache.d/%{_modname}.ini
@@ -98,5 +98,6 @@ fi
 %doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_modname}.ini
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.d/%{_modname}.ini
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache2handler.d/%{_modname}.ini
 %attr(755,root,root) %{extensionsdir}/%{_modname}.so
