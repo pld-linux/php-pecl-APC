@@ -6,8 +6,6 @@
 #  - http://pecl.php.net/bugs/bug.php?id=7762
 %define		_modname	APC
 %define		_status		stable
-%define		_sysconfdir	/etc/php
-%define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
 Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
@@ -19,9 +17,9 @@ Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
 # Source0-md5:	e7f1762ee95cdaaf90cf16345c6228a3
 URL:		http://pecl.php.net/package/APC/
 BuildRequires:	php-devel >= 3:5.0.0
-BuildRequires:	rpmbuild(macros) >= 1.322
+BuildRequires:	rpmbuild(macros) >= 1.344
 %{?requires_php_extension}
-Requires:	%{_sysconfdir}/conf.d
+Requires:	%{php_sysconfdir}/conf.d
 Obsoletes:	php-pear-%{_modname}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -71,33 +69,31 @@ phpize
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -D %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{extensionsdir}/%{_modname}.so
+install -D %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{php_extensiondir}/%{_modname}.so
 
 # we install APC.ini for all handlers but CLI and CGI
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/{cgi-fcgi,conf,apache,apache2handler}.d
-cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
-cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
-cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/apache.d/%{_modname}.ini
-cp -a %{_modname}.ini $RPM_BUILD_ROOT%{_sysconfdir}/apache2handler.d/%{_modname}.ini
+install -d $RPM_BUILD_ROOT%{php_sysconfdir}/{cgi-fcgi,conf,apache,apache2handler}.d
+cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
+cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_modname}.ini
+cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/apache.d/%{_modname}.ini
+cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/apache2handler.d/%{_modname}.ini
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+%php_webserver_restart
 
 %postun
 if [ "$1" = 0 ]; then
-	[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-	[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+	%php_webserver_restart
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_modname}.ini
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.d/%{_modname}.ini
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache2handler.d/%{_modname}.ini
-%attr(755,root,root) %{extensionsdir}/%{_modname}.so
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_modname}.ini
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/apache.d/%{_modname}.ini
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/apache2handler.d/%{_modname}.ini
+%attr(755,root,root) %{php_extensiondir}/%{_modname}.so
