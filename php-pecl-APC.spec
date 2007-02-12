@@ -7,7 +7,7 @@
 %define		_modname	APC
 %define		_status		stable
 Summary:	%{_modname} - Alternative PHP Cache
-Summary(pl):	%{_modname} - alternatywne cache PHP
+Summary(pl.UTF-8):   %{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
 Version:	3.0.12p2
 Release:	1
@@ -30,10 +30,10 @@ intermediate code.
 
 In PECL status of this package is: %{_status}.
 
-%description -l pl
-APC to alternatywne cache PHP. W wyobra¿eniach mia³o dostarczaæ
-wolnodostêpny, otwarty i potê¿ny szkielet do buforowania i
-optymalizowania kodu po¶redniego PHP.
+%description -l pl.UTF-8
+APC to alternatywne cache PHP. W wyobraÅ¼eniach miaÅ‚o dostarczaÄ‡
+wolnodostÄ™pny, otwarty i potÄ™Å¼ny szkielet do buforowania i
+optymalizowania kodu poÅ›redniego PHP.
 
 To rozszerzenie ma w PECL status: %{_status}.
 
