@@ -7,7 +7,7 @@
 %define		_modname	APC
 %define		_status		stable
 Summary:	%{_modname} - Alternative PHP Cache
-Summary(pl.UTF-8):   %{_modname} - alternatywne cache PHP
+Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
 Version:	3.0.12p2
 Release:	1
