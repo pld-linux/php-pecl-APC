@@ -1,5 +1,4 @@
 # TODO
-# - segfaults CLI
 # - maybe related:
 #  - http://pecl.php.net/bugs/bug.php?id=7141
 #  - http://pecl.php.net/bugs/bug.php?id=7261
@@ -10,7 +9,7 @@ Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
 Version:	3.0.14
-Release:	1
+Release:	2
 License:	PHP
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
@@ -74,7 +73,6 @@ install -D %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{php_extensiond
 # we install APC.ini for all handlers but CLI and CGI
 install -d $RPM_BUILD_ROOT%{php_sysconfdir}/{cgi-fcgi,conf,apache,apache2handler}.d
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
-cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_modname}.ini
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/apache.d/%{_modname}.ini
 cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/apache2handler.d/%{_modname}.ini
 
@@ -93,7 +91,6 @@ fi
 %defattr(644,root,root,755)
 %doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE}
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/cgi-fcgi.d/%{_modname}.ini
-%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_modname}.ini
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/apache.d/%{_modname}.ini
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/apache2handler.d/%{_modname}.ini
 %attr(755,root,root) %{php_extensiondir}/%{_modname}.so
