@@ -1,19 +1,19 @@
 # TODO
 # - maybe related:
 #  - http://pecl.php.net/bugs/bug.php?id=7141
-#  - http://pecl.php.net/bugs/bug.php?id=7261
 #  - http://pecl.php.net/bugs/bug.php?id=7762
 %define		_modname	APC
 %define		_status		stable
 Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
-Version:	3.0.15
+Version:	3.0.16
 Release:	1
 License:	PHP
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
-# Source0-md5:	fa15eac040221728f3aaeaf9595de6e1
+# Source0-md5:	5aa2ee801c3d74d868c1d8184781ba6b
+Patch0:		%{name}-tsrmls_c.patch
 URL:		http://pecl.php.net/package/APC/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.344
@@ -38,6 +38,7 @@ To rozszerzenie ma w PECL status: %{_status}.
 
 %prep
 %setup -q -c
+%patch0 -p0
 
 cat <<'EOF' > %{_modname}.ini
 ; Enable %{_modname} extension module
