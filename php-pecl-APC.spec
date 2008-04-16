@@ -7,13 +7,12 @@
 Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
-Version:	3.0.16
+Version:	3.0.18
 Release:	1
 License:	PHP
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
-# Source0-md5:	5aa2ee801c3d74d868c1d8184781ba6b
-Patch0:		%{name}-tsrmls_c.patch
+# Source0-md5:	491d63dfa35f9b6ff7421059aa448d4a
 URL:		http://pecl.php.net/package/APC/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.344
@@ -38,7 +37,6 @@ To rozszerzenie ma w PECL status: %{_status}.
 
 %prep
 %setup -q -c
-%patch0 -p0
 
 cat <<'EOF' > %{_modname}.ini
 ; Enable %{_modname} extension module
