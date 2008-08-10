@@ -8,7 +8,7 @@ Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
 Version:	3.0.19
-Release:	2
+Release:	3
 License:	PHP
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
@@ -56,9 +56,17 @@ apc.enabled=1
 ;apc.enable_cli=0
 EOF
 
-
 %build
 cd %{_modname}-%{version}
+
+# libtool 2.2 build fix
+if [ -f '/usr/share/aclocal/ltsugar.m4' ]; then
+	cat "/usr/share/aclocal/ltsugar.m4" >>  "config.m4"
+	cat "/usr/share/aclocal/ltversion.m4" >>  "config.m4"
+	cat "/usr/share/aclocal/lt~obsolete.m4" >>  "config.m4"
+	cat "/usr/share/aclocal/ltoptions.m4" >>  "config.m4"
+fi
+
 phpize
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
