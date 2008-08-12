@@ -1,7 +1,6 @@
 # TODO
 # - maybe related:
 #  - http://pecl.php.net/bugs/bug.php?id=7141
-#  - http://pecl.php.net/bugs/bug.php?id=7762
 %define		_modname	APC
 %define		_status		stable
 Summary:	%{_modname} - Alternative PHP Cache
@@ -58,15 +57,6 @@ EOF
 
 %build
 cd %{_modname}-%{version}
-
-# libtool 2.2 build fix
-if [ -f '/usr/share/aclocal/ltsugar.m4' ]; then
-	cat "/usr/share/aclocal/ltsugar.m4" >>  "config.m4"
-	cat "/usr/share/aclocal/ltversion.m4" >>  "config.m4"
-	cat "/usr/share/aclocal/lt~obsolete.m4" >>  "config.m4"
-	cat "/usr/share/aclocal/ltoptions.m4" >>  "config.m4"
-fi
-
 phpize
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
@@ -94,6 +84,6 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE}
+%doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE,apc.php}
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_modname}.ini
 %attr(755,root,root) %{php_extensiondir}/%{_modname}.so
