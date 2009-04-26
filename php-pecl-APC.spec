@@ -8,7 +8,7 @@ Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
 Version:	3.0.19
 Release:	3
-License:	PHP
+License:	PHP 3.01
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
 # Source0-md5:	951f43d2873e3572f5d5ae71a9b66f90
