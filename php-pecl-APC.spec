@@ -6,12 +6,12 @@
 Summary:	%{_modname} - Alternative PHP Cache
 Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
 Name:		php-pecl-%{_modname}
-Version:	3.1.10
-Release:	3
+Version:	3.1.13
+Release:	1
 License:	PHP 3.01
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
-# Source0-md5:	f4a6b91903d6ba9dce89fc87bb6f26c9
+# Source0-md5:	c9e47002e3a67ebde3a6f81437c7b6e0
 URL:		http://pecl.php.net/package/APC/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.344
@@ -59,7 +59,6 @@ EOF
 cd %{_modname}-%{version}
 phpize
 %configure \
-	--%{!?debug:dis}%{?debug:en}able-apc-debug \
 	--enable-apc-mmap
 %{__make}
 
