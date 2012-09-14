@@ -59,6 +59,7 @@ EOF
 cd %{_modname}-%{version}
 phpize
 %configure \
+	--%{!?debug:dis}%{?debug:en}able-apc-debug \
 	--enable-apc-mmap
 %{__make}
 
