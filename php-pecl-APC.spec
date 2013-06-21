@@ -1,23 +1,24 @@
 # TODO
 # - maybe related:
 #  - http://pecl.php.net/bugs/bug.php?id=7141
-%define		_modname	APC
-%define		_status		beta
-Summary:	%{_modname} - Alternative PHP Cache
-Summary(pl.UTF-8):	%{_modname} - alternatywne cache PHP
-Name:		php-pecl-%{_modname}
+%define		php_name	php%{?php_suffix}
+%define		modname	APC
+%define		status		beta
+Summary:	%{modname} - Alternative PHP Cache
+Summary(pl.UTF-8):	%{modname} - alternatywne cache PHP
+Name:		%{php_name}-pecl-%{modname}
 Version:	3.1.13
 Release:	1
 License:	PHP 3.01
 Group:		Development/Languages/PHP
-Source0:	http://pecl.php.net/get/%{_modname}-%{version}.tgz
+Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 # Source0-md5:	c9e47002e3a67ebde3a6f81437c7b6e0
 URL:		http://pecl.php.net/package/APC/
-BuildRequires:	php-devel >= 3:5.0.0
-BuildRequires:	rpmbuild(macros) >= 1.344
+BuildRequires:	%{php_name}-devel >= 3:5.0.0
+BuildRequires:	rpmbuild(macros) >= 1.650
 %{?requires_php_extension}
 Requires:	php(core) >= 5.0.4
-Obsoletes:	php-pear-%{_modname}
+Obsoletes:	php-pear-%{modname}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,21 +26,22 @@ APC is the Alternative PHP Cache. It was conceived of to provide a
 free, open, and robust framework for caching and optimizing PHP
 intermediate code.
 
-In PECL status of this package is: %{_status}.
+In PECL status of this package is: %{status}.
 
 %description -l pl.UTF-8
 APC to alternatywne cache PHP. W wyobrażeniach miało dostarczać
 wolnodostępny, otwarty i potężny szkielet do buforowania i
 optymalizowania kodu pośredniego PHP.
 
-To rozszerzenie ma w PECL status: %{_status}.
+To rozszerzenie ma w PECL status: %{status}.
 
 %prep
-%setup -q -c
+%setup -qc
+mv %{modname}-%{version}/* .
 
-cat <<'EOF' > %{_modname}.ini
-; Enable %{_modname} extension module
-extension=%{_modname}.so
+cat <<'EOF' > %{modname}.ini
+; Enable %{modname} extension module
+extension=%{modname}.so
 apc.enabled=1
 ;apc.optimization=0
 ;apc.shm_segments=1
@@ -56,7 +58,6 @@ apc.enabled=1
 EOF
 
 %build
-cd %{_modname}-%{version}
 phpize
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-apc-debug \
@@ -65,11 +66,9 @@ phpize
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -D %{_modname}-%{version}/modules/apc.so $RPM_BUILD_ROOT%{php_extensiondir}/%{_modname}.so
-
+install -D modules/apc.so $RPM_BUILD_ROOT%{php_extensiondir}/%{modname}.so
 install -d $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d
-
-cp -a %{_modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_modname}.ini
+cp -a %{modname}.ini $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{modname}.ini
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -84,6 +83,6 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc %{_modname}-%{version}/{CHANGELOG,INSTALL,NOTICE,apc.php}
-%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_modname}.ini
-%attr(755,root,root) %{php_extensiondir}/%{_modname}.so
+%doc CHANGELOG INSTALL NOTICE apc.php
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{modname}.ini
+%attr(755,root,root) %{php_extensiondir}/%{modname}.so
