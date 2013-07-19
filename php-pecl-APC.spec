@@ -8,7 +8,7 @@ Summary:	%{modname} - Alternative PHP Cache
 Summary(pl.UTF-8):	%{modname} - alternatywne cache PHP
 Name:		%{php_name}-pecl-%{modname}
 Version:	3.1.13
-Release:	1
+Release:	2
 License:	PHP 3.01
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
